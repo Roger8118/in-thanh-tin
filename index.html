@@ -1,490 +1,209 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>In Thành Tín – In ly trà sữa, chén nhựa theo yêu cầu</title>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;800&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- build: v2-cinematic-dark -->
+<meta name="build" content="v2-cinematic-dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🧋%3C/text%3E%3C/svg%3E">
+<title>In Thành Tín – In ly trà sữa, chén nhựa cao cấp</title>
+<meta name="description" content="In Thành Tín – in ly trà sữa, ly nhựa PP/PET, ly giấy, chén nhựa, nắp, ống hút theo thương hiệu.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Be+Vietnam+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#07090f;--bg2:#0e1320;--panel:rgba(22,28,44,.72);--line:rgba(212,175,120,.18);
-  --gold:#d4af78;--gold2:#f0d9a8;--tea:#c9a07a;--milk:#f3e1c7;--text:#e8e6e1;--muted:#9aa3b5;
-}
+:root{--bg:#0b0a09;--gold:#d8b878;--champ:#f1dfb8;--txt:#eee6da;--mut:#a89c8c;--glass:rgba(30,25,20,.42);--line:rgba(216,184,120,.22)}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
-body::before{
-  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:
-    radial-gradient(ellipse 80% 50% at 70% 10%,rgba(212,175,120,.14),transparent 55%),
-    radial-gradient(ellipse 60% 40% at 10% 80%,rgba(120,90,60,.12),transparent 50%),
-    radial-gradient(ellipse 50% 35% at 90% 70%,rgba(80,100,160,.1),transparent 45%),
-    linear-gradient(180deg,var(--bg),var(--bg2) 40%,#0a0c14);
-}
-#stage{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-}
-#stage.interactive{pointer-events:auto}
-header{
-  position:fixed;top:0;width:100%;z-index:20;display:flex;justify-content:space-between;align-items:center;
-  padding:16px 5%;background:rgba(7,9,15,.55);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);
-}
-.logo{font-weight:800;font-size:1.25rem;letter-spacing:.02em}
-.logo span{color:var(--gold)}
-nav a{margin-left:22px;color:var(--muted);text-decoration:none;font-weight:600;font-size:.92rem;transition:.25s}
-nav a:hover{color:var(--gold2)}
-.spacer{height:100vh;position:relative;z-index:1}
-.hero-copy{
-  position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;
-  padding:100px 5% 60px;max-width:640px;pointer-events:none;
-}
-.hero-copy h1{
-  font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.12;font-weight:800;
-  background:linear-gradient(135deg,var(--gold2),var(--gold) 45%,var(--tea));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-copy p{margin:18px 0 28px;color:var(--muted);font-size:1.08rem;max-width:460px}
-.btn{
-  pointer-events:auto;display:inline-block;padding:14px 30px;border-radius:999px;
-  background:linear-gradient(135deg,var(--gold),#b8924e);color:#120e08;text-decoration:none;
-  font-weight:700;border:0;cursor:pointer;box-shadow:0 10px 40px rgba(212,175,120,.25);transition:.3s;
-}
-.btn:hover{transform:translateY(-2px);box-shadow:0 14px 48px rgba(212,175,120,.35)}
-.hint{margin-top:28px;font-size:.85rem;color:var(--muted);opacity:.7;letter-spacing:.08em;text-transform:uppercase}
-main{position:relative;z-index:2;background:linear-gradient(180deg,transparent,rgba(7,9,15,.85) 8%,var(--bg))}
-section{padding:100px 5%}
-h2{font-size:clamp(1.8rem,3.5vw,2.5rem);text-align:center;margin-bottom:10px;color:var(--gold2)}
-.sub{text-align:center;max-width:640px;margin:0 auto 44px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
-.card{
-  background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:26px;
-  backdrop-filter:blur(12px);transition:.35s;
-}
-.card:hover{transform:translateY(-8px);border-color:rgba(212,175,120,.4);box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.ico{font-size:2.2rem}.card h3{margin:12px 0 8px;color:var(--gold2);font-size:1.1rem}
-.card p{color:var(--muted);font-size:.95rem}
-.reveal{opacity:0;transform:translateY(48px);transition:1s cubic-bezier(.2,.7,.2,1)}
-.reveal.show{opacity:1;transform:none}
-.step b{
-  display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),#b8924e);color:#120e08;font-weight:800;margin-bottom:10px;
-}
-table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:18px;overflow:hidden;border:1px solid var(--line)}
-th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line)}
-th{background:rgba(212,175,120,.1);color:var(--gold2)}
-td{color:var(--muted)}
-.note{
-  background:rgba(212,175,120,.12);color:var(--gold2);padding:8px 14px;border-radius:12px;
-  display:inline-block;margin-bottom:16px;font-weight:600;border:1px solid var(--line);
-}
-form{display:grid;gap:14px;max-width:560px}
-input,textarea,select{
-  padding:14px 16px;border-radius:14px;border:1px solid var(--line);font:inherit;
-  background:rgba(14,19,32,.9);color:var(--text);
-}
-input::placeholder,textarea::placeholder{color:#6b7385}
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.contact p{margin:10px 0;color:var(--muted)}
-footer{text-align:center;padding:36px;border-top:1px solid var(--line);color:var(--muted);position:relative;z-index:2}
-@media(max-width:800px){
-  .contact{grid-template-columns:1fr}
-  nav{display:none}
-  .hero-copy{max-width:100%;padding-top:90px;justify-content:flex-start}
-  .hero-copy h1{font-size:clamp(1.9rem,8vw,2.6rem)}
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="logo">In <span>Thành Tín</span></div>
-  <nav>
-    <a href="#gioithieu">Giới thiệu</a>
-    <a href="#sanpham">Sản phẩm</a>
-    <a href="#quytrinh">Quy trình</a>
-    <a href="#banggia">Bảng giá</a>
-    <a href="#lienhe">Liên hệ</a>
-  </nav>
-</header>
-
-<canvas id="stage"></canvas>
-
-<div class="spacer" id="hero">
-  <div class="hero-copy">
-    <h1>In ly trà sữa &amp; chén nhựa<br>mang thương hiệu của bạn</h1>
-    <p>In Thành Tín – giải pháp in ấn bao bì cho quán trà sữa, cà phê, nhà hàng. Màu sắc chuẩn, giao nhanh, số lượng linh hoạt.</p>
-    <a class="btn" href="#lienhe">Nhận báo giá ngay</a>
-    <div class="hint">Cuộn xuống để xem lớp 3D chuyển động</div>
-  </div>
-</div>
-
+html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto}
+body{font-family:'Be Vietnam Pro',sans-serif;background:radial-gradient(ellipse at 50% 0%,#221b14 0%,var(--bg) 60%) fixed;background-color:var(--bg);color:var(--txt);line-height:1.7;overflow-x:hidden}
+#gl{position:fixed;inset:0;z-index:0;pointer-events:none}#gl canvas{display:block}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vign{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.65))}
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:20px 6%;transition:.4s}
+header.s{background:rgba(11,10,9,.6);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 6%}
+.logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.45rem}.logo i{color:var(--gold)}
+nav a{margin-left:26px;color:var(--mut);text-decoration:none;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:.3s}nav a:hover{color:var(--gold)}
+main{position:relative;z-index:5}
+section{min-height:100vh;padding:120px 6%;display:flex;flex-direction:column;justify-content:center}
+.L{align-items:flex-start}.R{align-items:flex-end}.C{align-items:center;text-align:center}
+.eyebrow{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:.78rem;margin-bottom:14px;display:flex;gap:12px;align-items:center}
+.eyebrow:before{content:"";width:40px;height:1px;background:var(--gold)}
+h1,h2{font-family:'Playfair Display',serif;font-weight:800;line-height:1.1}
+h1{font-size:clamp(2.6rem,6.5vw,5.6rem)}h2{font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:18px}
+.gold{background:linear-gradient(100deg,#a8844a,#f5e2b5 40%,#c9a35e 60%,#f1dfb8);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
+.lead{max-width:520px;color:var(--mut);font-size:1.08rem;margin:22px 0 34px}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}.split .w>span{display:inline-block}
+.btn{display:inline-flex;gap:10px;align-items:center;padding:16px 34px;border-radius:50px;background:linear-gradient(120deg,#b48e52,#ecd6a4,#b48e52);background-size:200%;color:#1a140d;font-weight:600;text-decoration:none;border:0;cursor:pointer;transition:.5s;box-shadow:0 10px 40px rgba(216,184,120,.25)}
+.btn:hover{background-position:100%;transform:translateY(-2px)}
+.btn.o{background:transparent;color:var(--champ);border:1px solid var(--line);box-shadow:none;margin-left:12px}
+.glass{background:var(--glass);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:26px;padding:40px;max-width:560px;box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06)}
+.wide{max-width:1100px;width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-top:26px}
+.card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:20px;padding:24px;transition:border-color .4s,background .4s;text-align:left}
+.card:hover{border-color:var(--gold);background:rgba(216,184,120,.06)}
+.card h3{font-family:'Playfair Display',serif;color:var(--champ);margin:10px 0 6px;font-size:1.2rem}.card p{color:var(--mut);font-size:.92rem}
+.num{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--gold);line-height:1}
+.stats{display:flex;gap:40px;margin-top:26px}.stats b{display:block;font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold)}.stats span{color:var(--mut);font-size:.85rem}
+.tag{display:inline-block;padding:6px 14px;border:1px dashed var(--gold);border-radius:30px;color:var(--gold);font-size:.8rem;margin-bottom:18px}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:15px 10px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--gold);font-weight:400;letter-spacing:2px;text-transform:uppercase;font-size:.75rem}td:last-child{color:var(--champ);font-family:'Playfair Display',serif;font-size:1.1rem}
+.swatches{display:flex;gap:10px;margin-top:20px}.swatches i{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);cursor:pointer;transition:.3s}.swatches i.on{border-color:var(--champ);transform:scale(1.2)}
+form{display:grid;gap:12px;margin-top:18px}input,textarea,select{background:rgba(0,0,0,.3);border:1px solid var(--line);color:var(--txt);padding:14px 16px;border-radius:14px;font:inherit}input:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:40px}.contact p{color:var(--mut);margin:8px 0}
+footer{position:relative;z-index:5;text-align:center;padding:40px;color:var(--mut);border-top:1px solid var(--line);background:rgba(0,0,0,.5)}
+.prog{position:fixed;left:0;top:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--champ));z-index:30;width:0}
+#hero{position:relative}.scrollhint{position:absolute;bottom:30px;left:6%;color:var(--mut);font-size:.75rem;letter-spacing:3px}
+.js .rv{opacity:0;transform:translateY(50px)}
+@media(max-width:860px){nav{display:none}.L,.R{align-items:stretch}.glass{padding:26px;max-width:none}.contact{grid-template-columns:1fr}.btn.o{margin:12px 0 0}.stats{gap:22px}#hero{justify-content:flex-end;padding-bottom:90px}}
+</style><script>document.documentElement.classList.add('js')</script></head><body>
+<div class="prog" id="prog"></div><div id="gl"></div><div class="grain"></div><div class="vign"></div>
+<header id="hd"><div class="logo">In <i>Thành Tín</i></div><nav><a href="#gioithieu">Giới thiệu</a><a href="#sanpham">Sản phẩm</a><a href="#quytrinh">Quy trình</a><a href="#banggia">Bảng giá</a><a href="#lienhe">Liên hệ</a></nav></header>
 <main>
-<section id="gioithieu" class="reveal">
-  <h2>Giới thiệu</h2>
-  <p class="sub">In Thành Tín chuyên in logo, hình ảnh lên ly nhựa, ly giấy, chén nhựa, nắp và ống hút. Máy in hiện đại, mực an toàn thực phẩm, giúp thương hiệu của bạn xuất hiện trên từng ly nước.</p>
-  <div class="grid">
-    <div class="card"><div class="ico">🎨</div><h3>Thiết kế miễn phí</h3><p>Hỗ trợ lên mẫu theo nhận diện thương hiệu.</p></div>
-    <div class="card"><div class="ico">⚡</div><h3>Giao nhanh</h3><p>Sản xuất trong 3–7 ngày làm việc.</p></div>
-    <div class="card"><div class="ico">🛡️</div><h3>An toàn</h3><p>Nhựa và mực in đạt chuẩn tiếp xúc thực phẩm.</p></div>
-  </div>
-</section>
-
-<section id="sanpham" class="reveal">
-  <h2>Sản phẩm</h2>
-  <p class="sub">Đầy đủ bao bì cho đồ uống và món ăn.</p>
-  <div class="grid">
-    <div class="card"><div class="ico">🥤</div><h3>Ly nhựa PP/PET</h3><p>Dung tích 360–700ml, trong suốt, in 1–6 màu.</p></div>
-    <div class="card"><div class="ico">☕</div><h3>Ly giấy</h3><p>Ly nóng/lạnh 1–2 lớp, in offset sắc nét.</p></div>
-    <div class="card"><div class="ico">🥣</div><h3>Chén nhựa</h3><p>Chén, tô nhựa cho chè, sữa chua, món ăn mang đi.</p></div>
-    <div class="card"><div class="ico">🔘</div><h3>Nắp ly</h3><p>Nắp cầu, nắp bằng, nắp ép màng in logo.</p></div>
-    <div class="card"><div class="ico">🧋</div><h3>Ống hút</h3><p>Ống hút trân châu, ống hút giấy bọc in tên quán.</p></div>
-  </div>
-</section>
-
-<section id="quytrinh" class="reveal">
-  <h2>Quy trình đặt in</h2>
-  <p class="sub">4 bước đơn giản</p>
-  <div class="grid">
-    <div class="card step"><b>1</b><h3>Tư vấn</h3><p>Chọn loại ly, dung tích, số lượng.</p></div>
-    <div class="card step"><b>2</b><h3>Thiết kế &amp; duyệt mẫu</h3><p>Gửi file mockup để bạn duyệt.</p></div>
-    <div class="card step"><b>3</b><h3>Sản xuất</h3><p>In ấn và kiểm tra chất lượng.</p></div>
-    <div class="card step"><b>4</b><h3>Giao hàng</h3><p>Giao tận nơi toàn quốc.</p></div>
-  </div>
-</section>
-
-<section id="banggia" class="reveal">
-  <h2>Bảng giá tham khảo</h2>
-  <p class="sub"><span class="note">⚠️ Giá ví dụ minh họa – không phải báo giá thực tế</span></p>
-  <table>
-    <tr><th>Sản phẩm</th><th>Số lượng tối thiểu</th><th>Giá ví dụ / cái</th></tr>
-    <tr><td>Ly nhựa PP 500ml in 1 màu</td><td>1.000</td><td>~900đ</td></tr>
-    <tr><td>Ly PET 700ml in 2 màu</td><td>1.000</td><td>~1.500đ</td></tr>
-    <tr><td>Ly giấy 12oz</td><td>2.000</td><td>~1.200đ</td></tr>
-    <tr><td>Chén nhựa 250ml</td><td>2.000</td><td>~800đ</td></tr>
-    <tr><td>Ống hút bọc giấy in logo</td><td>5.000</td><td>~250đ</td></tr>
-  </table>
-</section>
-
-<section id="danhgia" class="reveal">
-  <h2>Khách hàng nói gì</h2>
-  <p class="sub"><span class="note">Đánh giá mẫu minh họa</span></p>
-  <div class="grid">
-    <div class="card">“Ly in đẹp, màu chuẩn, khách khen suốt.”<h3>— Quán trà sữa A (ví dụ)</h3></div>
-    <div class="card">“Giao đúng hẹn, giá hợp lý.”<h3>— Cà phê B (ví dụ)</h3></div>
-    <div class="card">“Chén nhựa chắc chắn, in logo sắc nét.”<h3>— Nhà hàng C (ví dụ)</h3></div>
-  </div>
-</section>
-
-<section id="lienhe" class="reveal">
-  <h2>Liên hệ</h2>
-  <p class="sub">Để lại thông tin, chúng tôi sẽ báo giá trong 30 phút.</p>
-  <div class="contact">
-    <div>
-      <p>📞 Hotline: 09xx xxx xxx</p>
-      <p>💬 Zalo: 09xx xxx xxx</p>
-      <p>✉️ Email: lienhe@example.com</p>
-      <p>📍 Địa chỉ: (đang cập nhật)</p>
-    </div>
-    <form id="f">
-      <input required placeholder="Họ tên">
-      <input required placeholder="Số điện thoại / Zalo">
-      <select>
-        <option>Ly nhựa PP/PET</option>
-        <option>Ly giấy</option>
-        <option>Chén nhựa</option>
-        <option>Nắp / Ống hút</option>
-      </select>
-      <textarea rows="4" placeholder="Số lượng, yêu cầu in..."></textarea>
-      <button class="btn" type="submit">Gửi yêu cầu</button>
-      <p id="ok"></p>
-    </form>
-  </div>
-</section>
+<section id="hero" class="L"><div class="eyebrow">Xưởng in bao bì đồ uống</div>
+<h1 class="split">In ly mang</h1><h1 class="split"><span class="gold">đẳng cấp</span> thương hiệu</h1>
+<p class="lead rv">In Thành Tín – in logo lên ly trà sữa, ly nhựa, ly giấy và chén nhựa cho quán cà phê, nhà hàng. Màu sắc sang trọng, chuẩn từng chi tiết.</p>
+<div class="rv"><a class="btn" href="#lienhe">Nhận báo giá ✦</a><a class="btn o" href="#sanpham">Xem sản phẩm</a></div><div class="scrollhint">CUỘN ĐỂ KHÁM PHÁ ↓</div></section>
+<section id="gioithieu" class="R"><div class="glass rv"><div class="eyebrow">Giới thiệu</div><h2>Mỗi chiếc ly là một <span class="gold">tấm danh thiếp</span></h2>
+<p style="color:var(--mut)">In Thành Tín chuyên in ấn bao bì đồ uống & thực phẩm: máy in hiện đại, mực an toàn tiếp xúc thực phẩm, đội ngũ thiết kế hỗ trợ miễn phí – giúp thương hiệu của bạn hiện diện trên từng ly nước mang đi.</p>
+<div class="stats"><div><b>3–7</b><span>ngày sản xuất</span></div><div><b>1–6</b><span>màu in</span></div><div><b>100%</b><span>mực an toàn</span></div></div></div></section>
+<section id="layers" class="L"><div class="glass rv"><div class="eyebrow">Cấu tạo hoàn hảo</div><h2>Từng lớp, <span class="gold">từng chi tiết</span></h2><p style="color:var(--mut)">Thân ly trong suốt, nhãn in sắc nét, nắp cầu khít và ống hút đồng bộ – tất cả đều có thể in logo theo bộ nhận diện của quán.</p></div></section>
+<section id="sanpham" class="C"><div class="glass wide rv"><div class="eyebrow" style="justify-content:center">Sản phẩm</div><h2>Bộ sưu tập <span class="gold">bao bì</span></h2>
+<div class="grid">
+<div class="card"><div class="num">01</div><h3>Ly nhựa PP/PET</h3><p>360–700ml, trong suốt, in 1–6 màu.</p></div>
+<div class="card"><div class="num">02</div><h3>Ly giấy</h3><p>Ly nóng/lạnh 1–2 lớp, in offset sắc nét.</p></div>
+<div class="card"><div class="num">03</div><h3>Chén nhựa</h3><p>Chén, tô cho chè, sữa chua, món mang đi.</p></div>
+<div class="card"><div class="num">04</div><h3>Nắp ly</h3><p>Nắp cầu, nắp bằng, màng ép in logo.</p></div>
+<div class="card"><div class="num">05</div><h3>Ống hút</h3><p>Ống hút trân châu, ống bọc giấy in tên quán.</p></div></div></div></section>
+<section id="mau" class="R"><div class="glass rv"><div class="eyebrow">Thiết kế theo ý bạn</div><h2>Đổi màu, đổi <span class="gold">phong cách</span></h2><p style="color:var(--mut)">Từ tối giản sang trọng đến rực rỡ trẻ trung – chúng tôi lên mockup để bạn duyệt trước khi in. Chạm vào các màu bên dưới để xem thử.</p>
+<div class="swatches" id="sw"></div></div></section>
+<section id="quytrinh" class="C"><div class="glass wide rv"><div class="eyebrow" style="justify-content:center">Quy trình đặt in</div><h2>4 bước <span class="gold">đơn giản</span></h2>
+<div class="grid"><div class="card"><div class="num">I</div><h3>Tư vấn</h3><p>Chọn loại ly, dung tích, số lượng.</p></div><div class="card"><div class="num">II</div><h3>Thiết kế & duyệt mẫu</h3><p>Gửi mockup để bạn duyệt.</p></div><div class="card"><div class="num">III</div><h3>Sản xuất</h3><p>In ấn, kiểm tra chất lượng từng lô.</p></div><div class="card"><div class="num">IV</div><h3>Giao hàng</h3><p>Giao tận nơi toàn quốc.</p></div></div></div></section>
+<section id="banggia" class="L"><div class="glass rv" style="max-width:640px"><div class="eyebrow">Bảng giá tham khảo</div><h2>Bảng giá <span class="gold">tham khảo</span></h2><span class="tag">⚠ Giá ví dụ minh họa – không phải báo giá thực tế</span>
+<table><tr><th>Sản phẩm</th><th>SL tối thiểu</th><th>Giá ví dụ</th></tr><tr><td>Ly nhựa PP 500ml in 1 màu</td><td>1.000</td><td>~900đ</td></tr><tr><td>Ly PET 700ml in 2 màu</td><td>1.000</td><td>~1.500đ</td></tr><tr><td>Ly giấy 12oz</td><td>2.000</td><td>~1.200đ</td></tr><tr><td>Chén nhựa 250ml</td><td>2.000</td><td>~800đ</td></tr><tr><td>Ống hút bọc giấy in logo</td><td>5.000</td><td>~250đ</td></tr></table></div></section>
+<section id="danhgia" class="C"><div class="glass wide rv"><div class="eyebrow" style="justify-content:center">Khách hàng nói gì</div><h2>Niềm tin <span class="gold">khách hàng</span></h2><span class="tag">Đánh giá mẫu minh họa</span>
+<div class="grid"><div class="card"><p>“Ly in đẹp, màu chuẩn, khách khen suốt.”</p><h3>— Quán trà sữa A (ví dụ)</h3></div><div class="card"><p>“Giao đúng hẹn, giá hợp lý.”</p><h3>— Cà phê B (ví dụ)</h3></div><div class="card"><p>“Chén nhựa chắc chắn, logo sắc nét.”</p><h3>— Nhà hàng C (ví dụ)</h3></div></div></div></section>
+<section id="lienhe" class="C"><div class="glass wide rv"><div class="contact"><div style="text-align:left"><div class="eyebrow">Liên hệ</div><h2>Bắt đầu <span class="gold">dự án</span></h2><p>📞 Hotline: 09xx xxx xxx</p><p>💬 Zalo: 09xx xxx xxx</p><p>✉ Email: (đang cập nhật)</p><p>📍 Địa chỉ: (đang cập nhật)</p></div>
+<form id="f"><input required placeholder="Họ tên"><input required placeholder="Số điện thoại / Zalo"><select><option>Ly nhựa PP/PET</option><option>Ly giấy</option><option>Chén nhựa</option><option>Nắp / Ống hút</option></select><textarea rows="4" placeholder="Số lượng, yêu cầu in..."></textarea><button class="btn">Gửi yêu cầu ✦</button><p id="ok" style="color:var(--gold)"></p></form></div></div></section>
 </main>
-
-<footer>© 2026 In Thành Tín – In ly trà sữa, chén nhựa theo yêu cầu</footer>
-
-<script type="importmap">
-{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
-</script>
+<footer>© 2026 <span style="color:var(--gold)">In Thành Tín</span> – In ly trà sữa, chén nhựa theo yêu cầu</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-
-const canvas = document.getElementById('stage');
-const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.15;
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 200);
-camera.position.set(0, 1.4, 11);
-
-scene.add(new THREE.AmbientLight(0x3a4258, 0.55));
-const key = new THREE.DirectionalLight(0xffe6c0, 2.4);
-key.position.set(5, 8, 6);
-scene.add(key);
-const rim = new THREE.DirectionalLight(0x88a0ff, 1.1);
-rim.position.set(-6, 2, -4);
-scene.add(rim);
-const warm = new THREE.PointLight(0xd4af78, 2.2, 30);
-warm.position.set(0, 2, 4);
-scene.add(warm);
-
-const root = new THREE.Group();
-scene.add(root);
-const layerFar = new THREE.Group();
-const layerMid = new THREE.Group();
-const layerNear = new THREE.Group();
-root.add(layerFar, layerMid, layerNear);
-
-function makeLabelTexture(title, subtitle, bg, fg) {
-  const cv = document.createElement('canvas');
-  cv.width = 1024; cv.height = 512;
-  const x = cv.getContext('2d');
-  x.fillStyle = bg;
-  x.fillRect(0, 0, 1024, 512);
-  x.textAlign = 'center';
-  for (const cx of [256, 768]) {
-    x.beginPath();
-    x.arc(cx, 190, 78, 0, Math.PI * 2);
-    x.fillStyle = '#fbf3e8';
-    x.fill();
-    x.fillStyle = fg;
-    x.font = 'bold 64px sans-serif';
-    x.fillText('🧋', cx, 212);
-    x.font = 'bold 58px "Be Vietnam Pro", sans-serif';
-    x.fillText(title, cx, 360);
-    x.font = '28px "Be Vietnam Pro", sans-serif';
-    x.fillStyle = '#7a5a3a';
-    x.fillText(subtitle, cx, 410);
-  }
-  const tex = new THREE.CanvasTexture(cv);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.wrapS = THREE.RepeatWrapping;
-  tex.offset.x = 0.25;
-  return tex;
-}
-
-function buildCup(scale = 1, labelBg = '#f6c9c4') {
-  const g = new THREE.Group();
-  const pts = [];
-  for (let i = 0; i <= 24; i++) {
-    const t = i / 24;
-    pts.push(new THREE.Vector2(0.95 + 0.48 * t, -1.85 + 3.7 * t));
-  }
-  const shell = new THREE.Mesh(
-    new THREE.LatheGeometry(pts, 72),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xffffff, transmission: 0.92, roughness: 1.48, roughnessIOR: 1.45,
-      roughness: 0.06, thickness: 0.35, transparent: true, opacity: 0.5, side: THREE.DoubleSide
-    })
-  );
-  g.add(shell);
-
-  const tp = [new THREE.Vector2(0, -1.8)];
-  for (let i = 0; i <= 12; i++) {
-    const t = i / 12;
-    tp.push(new THREE.Vector2(0.9 + 0.4 * t, -1.8 + 3.05 * t));
-  }
-  tp.push(new THREE.Vector2(0, 1.2));
-  g.add(new THREE.Mesh(
-    new THREE.LatheGeometry(tp, 64),
-    new THREE.MeshStandardMaterial({ color: 0xc9a07a, roughness: 0.55, metalness: 0.05 })
-  ));
-
-  const pm = new THREE.MeshStandardMaterial({ color: 0x2b1a12, roughness: 0.35 });
-  for (let i = 0; i < 48; i++) {
-    const p = new THREE.Mesh(new THREE.SphereGeometry(0.12, 10, 10), pm);
-    const a = Math.random() * Math.PI * 2;
-    const r = Math.random() * 0.75;
-    p.position.set(Math.cos(a) * r, -1.55 + Math.random() * 0.55, Math.sin(a) * r);
-    g.add(p);
-  }
-
-  const tex = makeLabelTexture('In Thành Tín', 'TRÀ SỮA • COFFEE', labelBg, '#5b3a24');
-  const lp = pts.slice(6, 16).map(v => new THREE.Vector2(v.x + 0.012, v.y));
-  g.add(new THREE.Mesh(
-    new THREE.LatheGeometry(lp, 72),
-    new THREE.MeshStandardMaterial({ map: tex, side: THREE.DoubleSide, roughness: 0.38 })
-  ));
-
-  const lid = [new THREE.Vector2(1.5, 1.85), new THREE.Vector2(1.5, 1.95), new THREE.Vector2(1.32, 2.0)];
-  for (let i = 0; i <= 14; i++) {
-    const a = (i / 14) * Math.PI / 2;
-    lid.push(new THREE.Vector2(1.32 * Math.cos(a), 2.0 + 0.95 * Math.sin(a)));
-  }
-  g.add(new THREE.Mesh(
-    new THREE.LatheGeometry(lid, 64),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xffffff, transmission: 0.9, transparent: true, opacity: 0.32,
-      roughness: 0.04, side: THREE.DoubleSide
-    })
-  ));
-
-  const straw = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.11, 0.11, 5.2, 24),
-    new THREE.MeshStandardMaterial({ color: 0xd9c8ee, roughness: 0.35 })
-  );
-  straw.position.set(0.28, 1.35, 0);
-  straw.rotation.z = -0.14;
-  g.add(straw);
-
-  g.scale.setScalar(scale);
-  return g;
-}
-
-function buildBowl(scale = 1) {
-  const g = new THREE.Group();
-  const pts = [];
-  for (let i = 0; i <= 20; i++) {
-    const t = i / 20;
-    const x = 0.2 + 1.55 * Math.sin(t * Math.PI * 0.55);
-    const y = -0.9 + 1.5 * t;
-    pts.push(new THREE.Vector2(x, y));
-  }
-  g.add(new THREE.Mesh(
-    new THREE.LatheGeometry(pts, 64),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xf5f0e8, transmission: 0.55, roughness: 0.2, thickness: 0.25,
-      transparent: true, opacity: 0.75, side: THREE.DoubleSide
-    })
-  ));
-  const fill = [];
-  for (let i = 0; i <= 16; i++) {
-    const t = i / 16;
-    fill.push(new THREE.Vector2(0.15 + 1.35 * Math.sin(t * Math.PI * 0.5), -0.85 + 1.05 * t));
-  }
-  fill.push(new THREE.Vector2(0, 0.15));
-  g.add(new THREE.Mesh(
-    new THREE.LatheGeometry(fill, 48),
-    new THREE.MeshStandardMaterial({ color: 0xe8c4a0, roughness: 0.45 })
-  ));
-  const tex = makeLabelTexture('In Thành Tín', 'CHÉN NHỰA', '#d9c8ee', '#3d2a1c');
-  const band = pts.slice(8, 16).map(v => new THREE.Vector2(v.x + 0.02, v.y));
-  g.add(new THREE.Mesh(
-    new THREE.LatheGeometry(band, 48),
-    new THREE.MeshStandardMaterial({ map: tex, side: THREE.DoubleSide, roughness: 0.4 })
-  ));
-  g.scale.setScalar(scale);
-  return g;
-}
-
-const cupMain = buildCup(1.15, '#f6c9c4');
-cupMain.position.set(2.2, 0.2, 0);
-layerNear.add(cupMain);
-
-const cupLeft = buildCup(0.72, '#cde8d8');
-cupLeft.position.set(-3.2, -0.6, -2.5);
-cupLeft.rotation.y = 0.7;
-layerMid.add(cupLeft);
-
-const bowl = buildBowl(0.95);
-bowl.position.set(-1.6, -1.4, 1.2);
-bowl.rotation.y = -0.4;
-layerMid.add(bowl);
-
-const cupFar = buildCup(0.55, '#f3e1c7');
-cupFar.position.set(4.5, 1.4, -4);
-cupFar.rotation.z = 0.15;
-layerFar.add(cupFar);
-
-const particles = new THREE.Group();
-layerFar.add(particles);
-const sparkMat = new THREE.MeshBasicMaterial({ color: 0xd4af78, transparent: true, opacity: 0.55 });
-for (let i = 0; i < 90; i++) {
-  const s = new THREE.Mesh(new THREE.SphereGeometry(0.03 + Math.random() * 0.04, 6, 6), sparkMat);
-  s.position.set((Math.random() - 0.5) * 16, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10 - 2);
-  s.userData.speed = 0.2 + Math.random() * 0.5;
-  s.userData.phase = Math.random() * Math.PI * 2;
-  particles.add(s);
-}
-
-const ringGeo = new THREE.TorusGeometry(3.2, 0.015, 8, 100);
-const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0xd4af78, transparent: true, opacity: 0.25 }));
-ring.rotation.x = Math.PI / 2.4;
-ring.position.set(1.5, 0.2, -1);
-layerFar.add(ring);
-
-const controls = new OrbitControls(camera, canvas);
-controls.enableZoom = false;
-controls.enablePan = false;
-controls.enableDamping = true;
-controls.autoRotate = false;
-controls.target.set(1.2, 0.3, 0);
-
-function resize() {
-  const w = innerWidth, h = innerHeight;
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-addEventListener('resize', resize);
-resize();
-
-let scrollY = 0;
-addEventListener('scroll', () => { scrollY = window.scrollY; }, {passive: true});
-
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-}, {threshold: 0.12});
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-document.getElementById('f').onsubmit = e => {
-  e.preventDefault();
-  document.getElementById('ok').textContent = 'Cảm ơn bạn! (Demo – form chưa gửi dữ liệu)';
-};
-
-const clock = new THREE.Clock();
-function animate() {
-  requestAnimationFrame(animate);
-  const t = clock.getElapsedTime();
-  const maxScroll = Math.max(document.body.scrollHeight - innerHeight, 1);
-  const p = Math.min(scrollY / maxScroll, 1);
-  const heroP = Math.min(scrollY / Math.max(innerHeight * 0.9, 1), 1);
-
-  cupMain.rotation.y = t * 0.35;
-  cupMain.position.y = 0.2 + Math.sin(t * 0.8) * 0.12 - heroP * 1.8;
-  cupMain.position.x = 2.2 - heroP * 0.8;
-  cupMain.rotation.x = heroP * 0.55;
-  cupMain.scale.setScalar(1.15 * (1 - heroP * 0.25));
-
-  cupLeft.rotation.y = -t * 0.25 + 0.7;
-  cupLeft.position.y = -0.6 + Math.sin(t * 0.6 + 1) * 0.18 - heroP * 0.9;
-  cupLeft.position.x = -3.2 - heroP * 1.2;
-
-  bowl.rotation.y = t * 0.2 - 0.4;
-  bowl.position.y = -1.4 + Math.sin(t * 0.7 + 2) * 0.1 + heroP * 0.6;
-  bowl.position.x = -1.6 + heroP * 2.5;
-  bowl.rotation.z = heroP * 0.35;
-
-  cupFar.rotation.y = t * 0.15;
-  cupFar.position.y = 1.4 + Math.sin(t * 0.5) * 0.2 - p * 2;
-
-  layerFar.position.z = -p * 2;
-  layerMid.position.z = -p * 0.8;
-  layerNear.position.z = p * 0.4;
-
-  ring.rotation.z = t * 0.12;
-  ring.material.opacity = 0.15 + Math.sin(t) * 0.08;
-
-  particles.children.forEach((s, i) => {
-    s.position.y += Math.sin(t * s.userData.speed + s.userData.phase) * 0.002;
-    s.position.x += Math.cos(t * s.userData.speed * 0.7 + i) * 0.0015;
-    s.material.opacity = 0.25 + 0.35 * (0.5 + 0.5 * Math.sin(t + s.userData.phase));
-  });
-
-  camera.position.x = Math.sin(t * 0.1) * 0.3 + heroP * 0.5;
-  camera.position.y = 1.4 - heroP * 0.4;
-  camera.lookAt(1.2 - heroP * 0.5, 0.3 - heroP * 0.8, 0);
-
-  controls.update();
-  renderer.render(scene, camera);
-
-  const inHero = scrollY < innerHeight * 0.85;
-  canvas.classList.toggle('interactive', inHero);
-}
-animate();
-</script>
-</body>
-</html>
+import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
+import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
+import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+gsap.registerPlugin(ScrollTrigger);
+const Q=new URLSearchParams(location.search);const STILL=Q.has('still');
+const mobile=matchMedia('(max-width:860px)').matches;
+const host=document.getElementById('gl');
+const R=new THREE.WebGLRenderer({antialias:!mobile,alpha:true,powerPreference:'high-performance'});
+R.setPixelRatio(Math.min(devicePixelRatio,mobile?1.25:1.5));R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;host.appendChild(R.domElement);
+const S=new THREE.Scene();S.fog=new THREE.FogExp2(0x0b0a09,.035);
+const pm=new THREE.PMREMGenerator(R);S.environment=pm.fromScene(new RoomEnvironment(),.04).texture;
+const C=new THREE.PerspectiveCamera(32,1,.1,200);
+S.add(new THREE.AmbientLight(0x3a2c20,.6));
+const key=new THREE.SpotLight(0xffd9a0,180,40,.5,.6);key.position.set(5,8,6);S.add(key);
+const rim=new THREE.PointLight(0xd8b878,60,20);rim.position.set(-4,2,-3);S.add(rim);
+const rim2=new THREE.PointLight(0xff9a5a,30,20);rim2.position.set(4,-2,-4);S.add(rim2);
+// label textures: design centred at u=0.5 of canvas; offset maps it to the cup front (+z)
+const PAL=[['#16120e','#d8b878','#f1dfb8','Đen Vàng'],['#f1dfb8','#3a2618','#8a6440','Kem Sữa'],['#5b2a1e','#f3c58f','#ffe9c8','Nâu Trà'],['#1f3b33','#d8c08a','#eadfc0','Matcha'],['#3b2350','#e7c3ff','#f5e6ff','Khoai Môn']];
+const LOFF=parseFloat(Q.get('loff')??'0.5');
+function shade(h){const n=parseInt(h.slice(1),16);const f=v=>Math.max(0,(v*.75)|0);return `rgb(${f(n>>16)},${f(n>>8&255)},${f(n&255)})`;}
+function labelTex(i){const [bg,fg,sub]=PAL[i];const cv=document.createElement('canvas');cv.width=2048;cv.height=640;const x=cv.getContext('2d');
+ const g=x.createLinearGradient(0,0,0,640);g.addColorStop(0,bg);g.addColorStop(1,shade(bg));x.fillStyle=g;x.fillRect(0,0,2048,640);
+ x.fillStyle=fg;x.globalAlpha=.5;x.fillRect(0,38,2048,3);x.fillRect(0,598,2048,3);x.globalAlpha=1;
+ x.textAlign='center';const cx=1024;
+ x.beginPath();x.arc(cx,200,95,0,7);x.strokeStyle=fg;x.lineWidth=6;x.stroke();
+ x.fillStyle=fg;x.font='italic 800 110px "Playfair Display",serif';x.fillText('TT',cx,238);
+ x.font='800 112px "Playfair Display",serif';x.fillText('In Thành Tín',cx,430);
+ x.fillStyle=sub;x.font='300 38px "Be Vietnam Pro",sans-serif';x.fillText('T R À   S Ữ A  •  C O F F E E',cx,510);
+ x.globalAlpha=.35;x.font='600 44px "Be Vietnam Pro",sans-serif';for(const s of [200,1848])x.fillText('✦ PREMIUM ✦',s,340);x.globalAlpha=1;
+ const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=THREE.RepeatWrapping;t.offset.x=LOFF;t.anisotropy=8;return t;}
+const clear=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.05,transmission:1,thickness:.15,ior:1.45,transparent:true,side:THREE.DoubleSide,envMapIntensity:1.4,clearcoat:1});
+const teaM=new THREE.MeshPhysicalMaterial({color:0xb9875a,roughness:.35,clearcoat:.6,sheen:.5,sheenColor:new THREE.Color(0xffe1b8)});
+const pearlM=new THREE.MeshPhysicalMaterial({color:0x1b0f08,roughness:.15,clearcoat:1,emissive:0x120804});
+const goldM=new THREE.MeshStandardMaterial({color:0xd8b878,metalness:1,roughness:.25,emissive:0x3a2a10});
+const prof=[];for(let i=0;i<=24;i++){const t=i/24;prof.push(new THREE.Vector2(.95+.45*t,-1.8+3.6*t));}
+prof.push(new THREE.Vector2(1.47,1.8),new THREE.Vector2(1.47,1.86));
+const cupG=new THREE.LatheGeometry(prof,96);
+const lidPts=[new THREE.Vector2(1.5,1.78),new THREE.Vector2(1.52,1.92),new THREE.Vector2(1.35,1.97)];for(let i=0;i<=16;i++){const a=i/16*Math.PI/2;lidPts.push(new THREE.Vector2(Math.max(.14,1.35*Math.cos(a)),1.97+.95*Math.sin(a)));}
+const lidG=new THREE.LatheGeometry(lidPts,96);
+const teaPts=[new THREE.Vector2(0,-1.75)];for(let i=0;i<=12;i++){const t=i/12;teaPts.push(new THREE.Vector2(.92+.36*t,-1.75+2.9*t));}teaPts.push(new THREE.Vector2(0,1.15));
+const teaG=new THREE.LatheGeometry(teaPts,96);
+const lblG=new THREE.LatheGeometry(prof.slice(5,17).map(v=>new THREE.Vector2(v.x+.012,v.y)),96);
+const strawG=new THREE.CylinderGeometry(.13,.13,5.2,32,1,true);
+const pearlG=new THREE.SphereGeometry(.14,16,12);
+function makeCup(pal=0,full=true){const g=new THREE.Group();
+ const body=new THREE.Mesh(cupG,clear);g.add(body);
+ const tea=new THREE.Mesh(teaG,teaM);g.add(tea);
+ const lm=new THREE.MeshPhysicalMaterial({map:labelTex(pal),roughness:.3,clearcoat:.8,side:THREE.DoubleSide});const lbl=new THREE.Mesh(lblG,lm);g.add(lbl);
+ const lid=new THREE.Mesh(lidG,clear);g.add(lid);
+ const straw=new THREE.Mesh(strawG,goldM);straw.position.set(.35,1.5,-.3);straw.rotation.z=-.14;g.add(straw);
+ if(full){const ip=new THREE.InstancedMesh(pearlG,pearlM,mobile?30:60);const d=new THREE.Object3D();for(let i=0;i<ip.count;i++){const a=Math.random()*6.28,r=Math.sqrt(Math.random())*.8;d.position.set(Math.cos(a)*r,-1.6+Math.random()*.55,Math.sin(a)*r);d.updateMatrix();ip.setMatrixAt(i,d.matrix);}g.add(ip);}
+ g.userData={body,tea,lbl,lid,straw,lm};return g;}
+function makeBowl(){const p=[];for(let i=0;i<=16;i++){const a=i/16*Math.PI/2;p.push(new THREE.Vector2(.2+1.1*Math.sin(a),-.6+.9*(1-Math.cos(a))));}
+ const g=new THREE.Group();g.add(new THREE.Mesh(new THREE.LatheGeometry(p,64),clear));const r=new THREE.Mesh(new THREE.TorusGeometry(1.3,.03,8,64),goldM);r.rotation.x=Math.PI/2;r.position.y=.3;g.add(r);return g;}
+const hero=makeCup(0);const heroWrap=new THREE.Group();heroWrap.add(hero);heroWrap.scale.setScalar(mobile?.52:.8);S.add(heroWrap);
+const floaters=[];const FN=mobile?6:12;
+for(let i=0;i<FN;i++){const k=i%3;const o=k===0?makeCup(i%PAL.length,false):k===1?makeBowl():new THREE.Mesh(lidG,clear);
+ const z=-4-Math.random()*14;o.scale.setScalar(.35+Math.random()*.45);
+ o.position.set((Math.random()-.5)*22,(Math.random()-.5)*12,z);
+ o.rotation.set(Math.random()*6,Math.random()*6,Math.random()*6);o.userData.sp=new THREE.Vector3(Math.random()-.5,Math.random()-.5,0).multiplyScalar(.4);o.userData.base=o.position.clone();o.userData.ph=Math.random()*6;S.add(o);floaters.push(o);}
+const PN=mobile?120:360;const pearls=new THREE.InstancedMesh(new THREE.SphereGeometry(.09,10,8),pearlM,PN);const pd=[];
+for(let i=0;i<PN;i++)pd.push({r:2.5+Math.random()*9,a:Math.random()*6.28,y:(Math.random()-.5)*24,s:.1+Math.random()*.3,k:.4+Math.random()*1.4});S.add(pearls);
+const DN=mobile?400:1400;const dg=new THREE.BufferGeometry();const dp=new Float32Array(DN*3);for(let i=0;i<DN*3;i++)dp[i]=(Math.random()-.5)*(i%3==2?30:26);dg.setAttribute('position',new THREE.BufferAttribute(dp,3));
+const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0xf1dfb8,size:.04,transparent:true,opacity:.7,blending:THREE.AdditiveBlending,depthWrite:false}));S.add(dust);
+const swU={t:{value:0}};
+const sw=new THREE.Mesh(new THREE.TorusKnotGeometry(3.2,.05,400,12,2,5),new THREE.ShaderMaterial({uniforms:swU,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:'varying vec2 vU;void main(){vU=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+ fragmentShader:'uniform float t;varying vec2 vU;void main(){float a=.5+.5*sin(vU.x*40.-t*2.);vec3 c=mix(vec3(.85,.62,.38),vec3(1.,.9,.7),a);gl_FragColor=vec4(c,.14*a);}'}));
+sw.scale.set(1,.5,1);S.add(sw);
+const stage=new THREE.Mesh(new THREE.TorusGeometry(2.4,.015,8,160),new THREE.MeshBasicMaterial({color:0xd8b878}));stage.rotation.x=Math.PI/2;S.add(stage);
+const stage2=stage.clone();stage2.scale.setScalar(1.4);stage2.material=stage.material.clone();stage2.material.transparent=true;stage2.material.opacity=.35;S.add(stage2);
+let comp=null;
+if(!mobile){comp=new EffectComposer(R);comp.addPass(new RenderPass(S,C));comp.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.5,.6,.82));comp.addPass(new OutputPass());}
+function resize(){const w=innerWidth,h=innerHeight;R.setSize(w,h);comp&&comp.setSize(w,h);C.aspect=w/h;C.updateProjectionMatrix();}addEventListener('resize',resize);resize();
+const side=mobile?0:1;
+const KEYS=[['hero',[0,.6,10.5],[0,.3,0],2.4*side,0,0],['gioithieu',[-5,2.5,8],[0,.5,0],-2.4*side,0,1],['layers',[2,1.5,11.5],[0,1.2,0],2.4*side,1,2],['sanpham',[0,7,11],[0,0,0],0,.15,3],['mau',[3,.3,8],[0,.4,0],-2.4*side,0,4],['quytrinh',[0,-2,12],[0,.8,0],0,.3,5],['banggia',[-3,1.5,8],[0,.3,0],2.6*side,0,6],['danhgia',[0,3,13],[0,0,0],0,0,7],['lienhe',[3,.5,9],[0,.3,0],0,0,8]];
+const st={cam:new THREE.Vector3(...KEYS[0][1]),look:new THREE.Vector3(...KEYS[0][2]),hx:KEYS[0][3],ex:0,ry:0};
+const tl=gsap.timeline({paused:true});
+for(let i=1;i<KEYS.length;i++){const k=KEYS[i];const at=i-1;
+ tl.to(st.cam,{x:k[1][0],y:k[1][1],z:k[1][2],ease:'power2.inOut',duration:1},at).to(st.look,{x:k[2][0],y:k[2][1],z:k[2][2],ease:'power2.inOut',duration:1},at).to(st,{hx:k[3],ex:k[4],ry:k[5],ease:'power2.inOut',duration:1},at);}
+let scrollP=0;
+ScrollTrigger.create({trigger:'main',start:'top top',end:'bottom bottom',onUpdate:s=>{scrollP=s.progress;tl.progress(s.progress);document.getElementById('prog').style.width=s.progress*100+'%';}});
+let pal=0;const sws=document.getElementById('sw');
+function setPal(i,force){if(i===pal&&!force)return;pal=i;const old=hero.userData.lm.map;hero.userData.lm.map=labelTex(i);hero.userData.lm.needsUpdate=true;old.dispose();[...sws.children].forEach((e,j)=>e.classList.toggle('on',j===i));
+ if(!force&&!STILL)gsap.fromTo(hero.scale,{x:.92,y:.92,z:.92},{x:1,y:1,z:1,duration:.8,ease:'elastic.out(1,.5)'});}
+PAL.forEach((p,i)=>{const e=document.createElement('i');e.style.background=`linear-gradient(135deg,${p[0]},${p[1]})`;e.title=p[3];if(!i)e.className='on';e.onclick=()=>{auto=false;setPal(i)};sws.appendChild(e);});
+let auto=true;
+ScrollTrigger.create({trigger:'#mau',start:'top 60%',end:'bottom 40%',onUpdate:s=>{if(auto)setPal(Math.min(PAL.length-1,Math.floor(s.progress*PAL.length)));}});
+const m={x:0,y:0},ms={x:0,y:0};addEventListener('pointermove',e=>{m.x=e.clientX/innerWidth-.5;m.y=e.clientY/innerHeight-.5;});
+const clock=new THREE.Clock();const d=new THREE.Object3D();
+function frame(){const t=STILL?1.0:clock.getElapsedTime();
+ ms.x+=(m.x-ms.x)*.05;ms.y+=(m.y-ms.y)*.05;
+ C.position.set(st.cam.x+ms.x*1.2,st.cam.y-ms.y*.8,st.cam.z);C.lookAt(st.look);
+ heroWrap.position.x=st.hx;heroWrap.position.y=(mobile?2.1:0)+Math.sin(t*1.2)*.12;
+ // face camera at keyframes (whole turns), sway between
+ const camYaw=Math.atan2(C.position.x-heroWrap.position.x,C.position.z);
+ hero.rotation.y=camYaw+st.ry*Math.PI*2+(STILL?0:Math.sin(t*.4)*.3)+ms.x*.5;hero.rotation.x=ms.y*.15;
+ const u=hero.userData,e=st.ex;
+ u.lid.position.y=e*1.6;u.lid.rotation.x=e*.3;u.straw.position.y=1.5+e*3.2;u.straw.position.x=.35+e*.8;
+ u.lbl.scale.setScalar(1+e*.35);u.tea.position.y=-e*1.2;
+ stage.position.set(st.hx,heroWrap.position.y-1.65,0);stage2.position.copy(stage.position);stage.rotation.z=t*.3;
+ sw.position.x=st.hx;sw.rotation.y=t*.15;sw.rotation.x=Math.PI/2+Math.sin(t*.3)*.2;swU.t.value=t;
+ for(const o of floaters){const b=o.userData.base;o.position.y=b.y+Math.sin(t*.5+o.userData.ph)*.6;o.position.x=b.x-ms.x*(2+(-b.z)*.15);if(!STILL){o.rotation.x+=o.userData.sp.x*.01;o.rotation.y+=o.userData.sp.y*.01;}}
+ for(let i=0;i<PN;i++){const p=pd[i];const a=p.a+t*p.s*.3;d.position.set(Math.cos(a)*p.r,((p.y+t*p.s+12)%24)-12,Math.sin(a)*p.r-3);d.scale.setScalar(p.k);d.updateMatrix();pearls.setMatrixAt(i,d.matrix);}
+ pearls.instanceMatrix.needsUpdate=true;dust.rotation.y=t*.02+scrollP*1.5;
+ comp?comp.render():R.render(S,C);}
+gsap.ticker.add(frame);
+if(!STILL&&window.Lenis){const lenis=new Lenis({lerp:.08,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=ev=>{ev.preventDefault();lenis.scrollTo(a.getAttribute('href'),{duration:1.6});});}
+// text reveals
+document.querySelectorAll('.split').forEach(h=>{const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{if(!w.trim()){f.append(w);return;}const s=document.createElement('span');s.className='w';const i=document.createElement('span');i.textContent=w;s.append(i);f.append(s);});c.replaceWith(f);}else walk(c);});};walk(h);});
+if(STILL){gsap.set('.rv',{opacity:1,y:0});}else{
+ gsap.from('.split .w>span',{yPercent:110,duration:1.2,stagger:.07,ease:'expo.out',delay:.2});
+ gsap.utils.toArray('.rv').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 85%'}}));
+ gsap.utils.toArray('.card').forEach((el,i)=>gsap.from(el,{opacity:0,y:40,duration:1,delay:(i%5)*.08,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%'}}));}
+addEventListener('scroll',()=>document.getElementById('hd').classList.toggle('s',scrollY>40));
+document.getElementById('f').onsubmit=ev=>{ev.preventDefault();document.getElementById('ok').textContent='Cảm ơn bạn! (Demo – form chưa gửi dữ liệu)';};
+document.fonts&&document.fonts.ready.then(()=>setPal(pal,true));
+window.__ok=true;
+</script></body></html>
